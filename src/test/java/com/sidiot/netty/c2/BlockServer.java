@@ -20,28 +20,31 @@ public class BlockServer {
         ByteBuffer buffer = ByteBuffer.allocate(16);
 
         // 2. 创建服务器
-        ServerSocketChannel ssc = ServerSocketChannel.open();
+        try (ServerSocketChannel ssc = ServerSocketChannel.open()) {
 
-        // 3. 绑定监听端口
-        ssc.bind(new InetSocketAddress(7999));
+            // 3. 绑定监听端口
+            ssc.bind(new InetSocketAddress(7999));
 
-        // 4. 创建连接集合
-        ArrayList<SocketChannel> channels = new ArrayList<>();
-        while (true) {
-            // 5. accept 建立与客户端连接，SocketChannel 用来与客户端之间通信
-            log.debug("connecting...");
-            SocketChannel sc = ssc.accept();
-            log.debug("connected... {}", sc);
-            channels.add(sc);
-            for (SocketChannel channel : channels) {
-                // 6. 接收客户端发送的数据
-                log.debug("before read... {}", channel);
-                channel.read(buffer);
-                buffer.flip();
-                debugRead(buffer);
-                buffer.clear();
-                log.debug("after read... {}", channel);
+            // 4. 创建连接集合
+            ArrayList<SocketChannel> channels = new ArrayList<>();
+            while (true) {
+                // 5. accept 建立与客户端连接，SocketChannel 用来与客户端之间通信
+                log.debug("connecting...");
+                SocketChannel sc = ssc.accept();
+                log.debug("connected... {}", sc);
+                channels.add(sc);
+                for (SocketChannel channel : channels) {
+                    // 6. 接收客户端发送的数据
+                    log.debug("before read... {}", channel);
+                    channel.read(buffer);
+                    buffer.flip();
+                    debugRead(buffer);
+                    buffer.clear();
+                    log.debug("after read... {}", channel);
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
