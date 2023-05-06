@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import static com.sidiot.netty.c1.ByteBufferUtil.debugRead;
 
 @Slf4j
-public class Server {
+public class BlockServer {
     public static void main(String[] args) throws IOException {
         // 使用 nio 来理解阻塞模式，单线程
 
