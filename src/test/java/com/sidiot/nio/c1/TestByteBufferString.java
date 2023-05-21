@@ -1,11 +1,11 @@
-package com.sidiot.netty.c1;
+package com.sidiot.nio.c1;
 
 import org.junit.Test;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
-import static com.sidiot.netty.c1.ByteBufferUtil.debugAll;
+import static com.sidiot.nio.c1.ByteBufferUtil.debugAll;
 public class TestByteBufferString {
 
     @Test

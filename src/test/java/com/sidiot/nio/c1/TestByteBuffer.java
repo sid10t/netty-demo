@@ -1,4 +1,4 @@
-package com.sidiot.netty.c1;
+package com.sidiot.nio.c1;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,7 +11,7 @@ import java.nio.channels.FileChannel;
 public class TestByteBuffer {
 
     public static void main(String[] args) {
-        // FileChannel
+
         try (FileChannel channel = new FileInputStream("data.txt").getChannel()) {
             // 准备缓冲区
             ByteBuffer buffer = ByteBuffer.allocate(10);
@@ -32,6 +32,7 @@ public class TestByteBuffer {
         } catch (IOException e) {
 
         }
+
     }
 
 }

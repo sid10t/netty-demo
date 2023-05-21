@@ -1,4 +1,4 @@
-package com.sidiot.netty.c1;
+package com.sidiot.nio.c1;
 
 import java.nio.ByteBuffer;
 

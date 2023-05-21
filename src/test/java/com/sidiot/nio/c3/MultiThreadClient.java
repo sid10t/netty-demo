@@ -1,4 +1,4 @@
-package com.sidiot.netty.c3;
+package com.sidiot.nio.c3;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

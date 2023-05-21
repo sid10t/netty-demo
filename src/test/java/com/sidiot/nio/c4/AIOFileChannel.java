@@ -1,4 +1,4 @@
-package com.sidiot.netty.c4;
+package com.sidiot.nio.c4;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,7 +9,7 @@ import java.nio.channels.CompletionHandler;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-import static com.sidiot.netty.c1.ByteBufferUtil.debugAll;
+import static com.sidiot.nio.c1.ByteBufferUtil.debugAll;
 
 @Slf4j
 public class AIOFileChannel {

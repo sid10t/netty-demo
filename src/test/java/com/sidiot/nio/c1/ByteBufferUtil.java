@@ -1,10 +1,9 @@
-package com.sidiot.netty.c1;
+package com.sidiot.nio.c1;
 
 import java.nio.ByteBuffer;
 
 import io.netty.util.internal.MathUtil;
 import io.netty.util.internal.StringUtil;
-import io.netty.util.internal.MathUtil.*;
 
 
 public class ByteBufferUtil {

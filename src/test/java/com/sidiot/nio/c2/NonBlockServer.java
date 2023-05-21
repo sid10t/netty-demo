@@ -1,4 +1,4 @@
-package com.sidiot.netty.c2;
+package com.sidiot.nio.c2;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,7 +9,7 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 
-import static com.sidiot.netty.c1.ByteBufferUtil.debugRead;
+import static com.sidiot.nio.c1.ByteBufferUtil.debugRead;
 
 @Slf4j
 public class NonBlockServer {

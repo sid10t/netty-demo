@@ -1,4 +1,4 @@
-package com.sidiot.netty.c3;
+package com.sidiot.nio.c3;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -7,14 +7,12 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.util.Iterator;
-import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.atomic.AtomicInteger;
 
-import static com.sidiot.netty.c1.ByteBufferUtil.debugAll;
+import static com.sidiot.nio.c1.ByteBufferUtil.debugAll;
 
 @Slf4j
-public class MultiThreadServer {
+public class MultiThreadServer1 {
     public static void main(String[] args) throws IOException {
         Thread.currentThread().setName("Boss");
         Selector boss = Selector.open();
@@ -23,11 +21,7 @@ public class MultiThreadServer {
         SelectionKey bossKey = ssc.register(boss, SelectionKey.OP_ACCEPT, null);
         ssc.bind(new InetSocketAddress(7999));
 
-        Worker[] workers = new Worker[2];
-        for (int i = 0; i < workers.length; i++) {
-            workers[i] = new Worker("worker-" + i);
-        }
-        AtomicInteger index = new AtomicInteger();
+        MultiThreadServer.Worker worker0 = new MultiThreadServer.Worker("worker-0");
 
         while (true) {
             boss.select();
@@ -42,7 +36,7 @@ public class MultiThreadServer {
                     sc.configureBlocking(false);
                     log.debug("connected... {}", sc.getRemoteAddress());
                     log.debug("before register {}", sc.getRemoteAddress());
-                    workers[index.getAndIncrement() % workers.length].register(sc);
+                    worker0.register(sc);
                     log.debug("after register {}", sc.getRemoteAddress());
                 }
             }
@@ -67,16 +61,8 @@ public class MultiThreadServer {
                 this.thread.start();
                 this.start = true;
             }
-
-            this.queue.add(() -> {
-                try {
-                    sc.register(this.selector, SelectionKey.OP_READ, null);
-                } catch (ClosedChannelException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-
             this.selector.wakeup();
+            sc.register(this.selector, SelectionKey.OP_READ, null);
         }
 
         @Override
@@ -84,12 +70,6 @@ public class MultiThreadServer {
             while (true) {
                 try {
                     this.selector.select();
-
-                    Runnable task = this.queue.poll();
-                    if (task != null) {
-                        task.run();
-                    }
-
                     Iterator<SelectionKey> iter = this.selector.selectedKeys().iterator();
                     while (iter.hasNext()) {
                         SelectionKey key = iter.next();
