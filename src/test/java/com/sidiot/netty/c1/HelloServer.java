@@ -18,22 +18,22 @@ public class HelloServer {
                 // 3. 选择服务器的 ServerSocketChannel 实现
                 .channel(NioServerSocketChannel.class)
                 // 4. 配置 worker(child) 能执行的操作 handler
-                .childHandler(
-                        // 5. channel 初始化，负责添加别的 handler
-                        new ChannelInitializer<NioSocketChannel>() {
-                            @Override
-                            protected void initChannel(NioSocketChannel nsc) throws Exception {
-                                // 6. 添加具体的 handler
-                                nsc.pipeline().addLast(new StringDecoder());
-                                nsc.pipeline().addLast(new ChannelInboundHandlerAdapter() {
-                                    @Override
-                                    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-                                        System.out.println(msg);
-                                    }
-                                });
+                    .childHandler(
+                            // 5. channel 初始化，负责添加别的 handler
+                            new ChannelInitializer<NioSocketChannel>() {
+                                @Override
+                                protected void initChannel(NioSocketChannel nsc) {
+                                    // 6. 添加具体的 handler
+                                    nsc.pipeline().addLast(new StringDecoder());
+                                    nsc.pipeline().addLast(new ChannelInboundHandlerAdapter() {
+                                        @Override
+                                        public void channelRead(ChannelHandlerContext ctx, Object msg) {
+                                            System.out.println(msg);
+                                        }
+                                    });
+                                }
                             }
-                        }
-                )
+                    )
                 // 7. 绑定监听端口
                 .bind(7999);
     }
