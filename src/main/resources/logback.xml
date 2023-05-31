@@ -25,7 +25,13 @@
     </appender>
 
     <!-- 用来控制查看哪个类的日志内容（对 mybatis name 代表命名空间）-->
+    <logger name="com.sidiot.nio" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
     <logger name="com.sidiot.netty" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+    <logger name="io.netty.handler.logging.LoggingHandler" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
 
