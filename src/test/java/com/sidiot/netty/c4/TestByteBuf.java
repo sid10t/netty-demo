@@ -11,16 +11,13 @@ import static io.netty.util.internal.StringUtil.NEWLINE;
 public class TestByteBuf {
     public static void main(String[] args) {
         ByteBuf buf = ByteBufAllocator.DEFAULT.buffer();
-//        log(buf);
-//        StringBuilder sb = new StringBuilder();
-//        for (int i = 0; i < 50; i++) {
-//            sb.append("sidiot");
-//        }
-//        buf.writeBytes(sb.toString().getBytes());
-//        log(buf);
-
-        testReadRepeat(buf);
-
+        log(buf);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 50; i++) {
+            sb.append("sidiot");
+        }
+        buf.writeBytes(sb.toString().getBytes());
+        log(buf);
     }
 
     public static void testWriteBoolean(ByteBuf buf) {
