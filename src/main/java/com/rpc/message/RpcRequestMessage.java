@@ -1,12 +1,12 @@
 package com.rpc.message;
 
-import com.asm.message.Message;
+import com.sidiot.message.Message;
 import lombok.Getter;
 import lombok.ToString;
 
 
 /**
- * @author yihang
+ * @author sidiot
  */
 @Getter
 @ToString(callSuper = true)

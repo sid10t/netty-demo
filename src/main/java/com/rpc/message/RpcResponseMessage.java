@@ -1,9 +1,12 @@
 package com.rpc.message;
 
-import com.asm.message.Message;
+import com.sidiot.message.Message;
 import lombok.Data;
 import lombok.ToString;
 
+/**
+ * @author sidiot
+ */
 @Data
 @ToString(callSuper = true)
 public class RpcResponseMessage extends Message {
