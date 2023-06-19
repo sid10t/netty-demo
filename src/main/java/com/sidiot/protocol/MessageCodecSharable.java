@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * @author sidiot
+ * 必须与 LengthFieldBasedFrameDecoder 一起使用，确保接收到的 ByteBuf 的完整性
  */
 @Slf4j
 @ChannelHandler.Sharable
