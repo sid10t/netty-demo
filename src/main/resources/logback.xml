@@ -31,6 +31,9 @@
     <logger name="com.sidiot.netty" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
+    <logger name="com.sidiot.protocol" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
     <logger name="io.netty.handler.logging.LoggingHandler" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
