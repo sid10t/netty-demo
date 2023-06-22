@@ -13,7 +13,7 @@ import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 聊天--服务端
+ * 聊天--初始服务端
  * @author sidiot
  */
 @Slf4j
