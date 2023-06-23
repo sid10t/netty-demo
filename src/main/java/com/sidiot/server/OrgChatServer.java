@@ -18,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class OrgChatServer {
-    public static final ProtocolFrameDecoder PROTOCOL_FRAME_DECODER = new ProtocolFrameDecoder();
     public static final MessageCodecSharable MESSAGE_CODEC = new MessageCodecSharable();
     public static final LoggingHandler LOGGING_HANDLER = new LoggingHandler(LogLevel.DEBUG);
 
@@ -32,7 +31,7 @@ public class OrgChatServer {
             bs.childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(PROTOCOL_FRAME_DECODER);
+                    ch.pipeline().addLast(new ProtocolFrameDecoder());
                     ch.pipeline().addLast(LOGGING_HANDLER);
                     ch.pipeline().addLast(MESSAGE_CODEC);
 
