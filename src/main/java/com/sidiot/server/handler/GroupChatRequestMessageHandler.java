@@ -12,7 +12,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import java.util.List;
 
 /**
- * 发送消息---管理器
+ * 发送消息（群聊）---管理器
  * @author sidiot
  */
 @ChannelHandler.Sharable

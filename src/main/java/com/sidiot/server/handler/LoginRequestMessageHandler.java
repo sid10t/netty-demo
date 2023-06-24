@@ -9,6 +9,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 /**
+ * 发送消息（私聊）---管理器
  * @author sidiot
  */
 @ChannelHandler.Sharable
@@ -22,7 +23,7 @@ public class LoginRequestMessageHandler extends SimpleChannelInboundHandler<Logi
         boolean login = UserServiceFactory.getUserService().login(username, password);
         LoginResponseMessage message;
         if (login) {
-            message = new LoginResponseMessage(true, "登陆成功");
+            message = new LoginResponseMessage(true, String.format("用户 %s 登陆成功！", username));
             // channel 与 user 相互绑定
             SessionFactory.getSession().bind(ctx.channel(), username);
         } else {

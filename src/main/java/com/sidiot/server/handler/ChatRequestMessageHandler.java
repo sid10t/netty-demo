@@ -22,7 +22,7 @@ public class ChatRequestMessageHandler extends SimpleChannelInboundHandler<ChatR
         }
         // 不在线
         else {
-            ctx.writeAndFlush(new ChatResponseMessage(false, "对方用户不存在或离线，发送失败"));
+            ctx.writeAndFlush(new ChatResponseMessage(false, String.format("用户 %s 不存在或离线，消息发送失败", msg.getTo())));
         }
     }
 }
