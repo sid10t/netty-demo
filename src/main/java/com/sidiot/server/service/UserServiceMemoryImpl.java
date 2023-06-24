@@ -23,6 +23,8 @@ public class UserServiceMemoryImpl implements UserService {
         allUserMap.put("sidiot", "123456");
         allUserMap.put("Tom", "56789");
         allUserMap.put("Lisa", "123");
+        allUserMap.put("Oakley", "123");
+        allUserMap.put("jake", "123");
         allUserMap.put("Root", "456");
     }
 }
