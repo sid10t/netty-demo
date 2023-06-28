@@ -39,6 +39,13 @@ public interface Session {
     void setAttribute(Channel channel, String name, Object value);
 
     /**
+     * 根据 channel 获取用户名
+     * @param channel 用户名
+     * @return String
+     */
+    String getName(Channel channel);
+
+    /**
      * 根据用户名获取 channel
      * @param username 用户名
      * @return channel
