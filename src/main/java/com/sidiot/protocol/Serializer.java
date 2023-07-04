@@ -124,7 +124,9 @@ public interface Serializer {
             public <T> byte[] serialize(T object) {
                 System.out.println("序列化算法：MessagePack");
                 try {
-                    return new MessagePack().write(object);
+                    org.msgpack.MessagePack msgPack = new MessagePack();
+                    msgPack.register(object.getClass());
+                    return msgPack.write(object);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
